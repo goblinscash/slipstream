@@ -80,7 +80,7 @@ contract DeployCL is Script {
 
         // deploy nft contracts
         nftDescriptor =
-            new NonfungibleTokenPositionDescriptor({_WETH9: address(weth), _nativeCurrencyLabelBytes: bytes32("ETH")});
+            new NonfungibleTokenPositionDescriptor({_WETH9: address(weth), _nativeCurrencyLabelBytes: bytes32("BNB")});
         nft = new NonfungiblePositionManager({
             _factory: address(poolFactory),
             _WETH9: address(weth),
@@ -88,7 +88,7 @@ contract DeployCL is Script {
         });
 
         // set nft manager in the factories
-        gaugeFactory.setNonfungiblePositionManager(address(nft));
+        gaugeFactory.setNonfungiblePositionManager{gas: 48475*5}(address(nft));
         poolFactory.setNonfungiblePositionManager(address(nft));
 
         // deploy fee modules

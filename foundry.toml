@@ -3,8 +3,10 @@ src = "contracts"
 test = "test"
 out = "out"
 libs = ["lib"]
-optimizer =true    # 👈 Redundant but explicit (enabled by optimizer_runs)
-optimizer_runs =200  # Higher runs help optimize gas
+
+optimizer = true
+optimizer_runs = 200
+solc_version = "0.7.6"
 
 fs_permissions = [{ access = "read-write", path = "./"}]
 
@@ -16,9 +18,11 @@ no_match_test = "testEchidna"
 runs = 5000
 
 [rpc_endpoints]
-optimism_goerli = "${OPTIMISM_GOERLI_RPC_URL}"
-optimism = "${OPTIMISM_RPC_URL}"
+bsc = "${BSC_RPC_URL}"
+base_goerli = "${BASE_GOERLI_RPC_URL}"
+base = "${BASE_RPC_URL}"
 
 [etherscan]
-optimism_goerli = { key = "${OPTIMISM_GOERLI_ETHERSCAN_API_KEY}", url = "${OPTIMISM_GOERLI_ETHERSCAN_VERIFIER_URL}" }
-optimism = { key = "${OPTIMISM_ETHERSCAN_API_KEY}", url = "${OPTIMISM_ETHERSCAN_VERIFIER_URL}" }
+bsc = { key = "${BSC_SCAN_API_KEY}", url = "${BSC_ETHERSCAN_VERIFIER_URL}" }
+base_goerli = { key = "${BASE_GOERLI_ETHERSCAN_API_KEY}", url = "${BASE_GOERLI_ETHERSCAN_VERIFIER_URL}" }
+base = { key = "${BASE_ETHERSCAN_API_KEY}", url = "${BASE_ETHERSCAN_VERIFIER_URL}" }

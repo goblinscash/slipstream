@@ -1,35 +1,31 @@
-# Velodrome Concentrated Liquidity Contracts
+## Deploy CL
 
-This repository contains the smart contracts for the Velodrome Concentrated Liquidity contracts. It contains
-the core concentrated liquidity contracts, adapted from UniswapV3's core contracts. It contains the higher level
-periphery contracts, adapted from UniswapV3's periphery contracts. It also contains gauges designed to operate
-within the Velodrome ecosystem.  
+Deployment is straightforward. Hardhat scripts for deployment on tenderly are provided in script/hardhat.
+This deployment assumes an existing Velodrome deployment exists.
 
-## Installation
-
-This repository is a hybrid hardhat and foundry repository.
-
-Install hardhat dependencies with `yarn install`.
-Install foundry dependencies with `forge install`.
-
-Run hardhat tests with `yarn test`.
-Run forge tests with `forge test`.
-
-## Testing
-
-### Invariants
-
-To run the invariant tests, echidna must be installed. The following instructions require additional installations (e.g. of solc-select). 
-
+### Environment Setup
+1. Copy `.env.example` into a new `.env` file and set the environment variables. `PRIVATE_KEY_DEPLOY` is the private key to deploy all scripts.
+2. Copy `script/constants/TEMPLATE.json` into a new file `script/constants/{CONSTANTS_FILENAME}`. For example, "Base.json" in the .env would be a file at location `script/constants/Base.json`. Set the variables in the new file.
+3. Run tests to ensure deployment state is configured correctly:
 ```
-echidna test/invariants/E2E_mint_burn.sol --config test/invariants/E2E_mint_burn.config.yaml --contract E2E_mint_burn
-echidna test/invariants/E2E_swap.sol --config test/invariants/E2E_swap.config.yaml --contract E2E_swap
+forge init
+forge build
+forge test
 ```
 
-## Licensing
+### Deployment
 
-As this repository depends on the UniswapV3 `v3-core` and `v3-periphery` repository, the contracts in the 
-`contracts/core` and  `contracts/periphery` folders are licensed under `GPL-2.0-or-later` or alternative 
-licenses (as indicated in their SPDX headers).
+Command:
 
-Files in the `contracts/gauge` folder are licensed under the Business Source License 1.1 (`BUSL-1.1`).
+As of 2024, gas estimation for foundry on L2s continues to be inaccurate. You will need `--legacy --with-gas-price 2500000` if you wish to not overpay L2 gas.
+For non-create transactions, `--gas-estimate-multiplier 200` must be used as gas estimation is incorrect for these as well.
+
+```
+forge script script/DeployCL.s.sol:DeployCL --broadcast --slow --rpc-url bsc --verify -vvvv
+
+forge script script/DeployPools.s.sol:DeployPools --broadcast --slow --rpc-url bsc --verify -vvvv
+
+forge script script/DeploySugarHelper.s.sol:DeploySugarHelper --broadcast --slow --rpc-url bsc --verify -vvvv
+
+forge script script/DeployPositionDescriptor.s.sol:DeployPositionDescriptor --broadcast --slow --rpc-url bsc --verify -vvvv
+```

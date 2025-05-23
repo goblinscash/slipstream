@@ -18,5 +18,7 @@ forge test
 Command:
 
 ```
-forge script script/DeployCL.s.sol:DeployCL --broadcast --slow --rpc-url optimism --verify -vvvv 
+forge script script/DeployCL.s.sol:DeployCL --broadcast --slow --rpc-url bsc --verify -vvvv
+# Approve the CL Pool Factory and CL Gauge Factory within FactoryRegistry contract
+forge script script/DeployPools.s.sol:DeployPools --broadcast --slow --rpc-url bsc --verify -vvvv
 ```
