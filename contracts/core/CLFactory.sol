@@ -39,6 +39,8 @@ contract CLFactory is ICLFactory {
     mapping(address => mapping(address => mapping(int24 => address))) public override getPool;
     /// @dev Used in VotingEscrow to determine if a contract is a valid pool
     mapping(address => bool) private _isPool;
+    /// @inheritdoc ICLFactory
+    address[] public override allPools;
 
     int24[] private _tickSpacings;
 
@@ -83,6 +85,7 @@ contract CLFactory is ICLFactory {
             _nft: nft,
             _sqrtPriceX96: sqrtPriceX96
         });
+        allPools.push(pool);
         _isPool[pool] = true;
         getPool[token0][token1][tickSpacing] = pool;
         // populate mapping in the reverse direction, deliberate choice to avoid the cost of comparing addresses
@@ -212,5 +215,15 @@ contract CLFactory is ICLFactory {
         require(owner == msg.sender, "NA");
         require(_nft != address(0));
         nft = _nft;
+    }
+
+    /// @inheritdoc ICLFactory
+    function allPoolsLength() external view override returns (uint256) {
+        return allPools.length;
+    }
+
+    /// @inheritdoc ICLFactory
+    function isPool(address pool) external view override returns (bool) {
+        return _isPool[pool];
     }
 }

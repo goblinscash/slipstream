@@ -164,6 +164,11 @@ interface ICLGauge {
         uint256 deadline
     ) external returns (uint256 amount0, uint256 amount1);
 
+    /// @notice Fetch all tokenIds staked by a given account
+    /// @param depositor The address of the user
+    /// @return The tokenIds of the staked positions
+    function stakedValues(address depositor) external view returns (uint256[] memory);
+
     /// @notice Check whether a position is staked in the gauge by a certain user
     /// @param depositor The address of the user
     /// @param tokenId The tokenId of the position
