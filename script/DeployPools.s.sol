@@ -31,7 +31,7 @@ contract DeployPools is Script {
         feeToTickSpacing[3000] = 200;
         feeToTickSpacing[10_000] = 2_000;
 
-        v3Factory = IUniswapV3Factory(0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7);
+        v3Factory = IUniswapV3Factory(0x30D9e1f894FBc7d2227Dd2a017F955d5586b1e14); // gobv1 uniswap v3 factory
     }
 
     function run() public {
@@ -54,7 +54,8 @@ contract DeployPools is Script {
         address pool;
         address newPool;
         for (uint256 i = 0; i < tokenAs.length; i++) {
-            pool = v3Factory.getPool({tokenA: tokenAs[i], tokenB: tokenBs[i], fee: fees[i]});
+            address tokenB = tokenBs[i] == address(0x62440594BE441fAec7F9fd4a3A8D1F4AD86E2987) ? address(0x701ACA29AE0F5d24555f1E8A6Cf007541291d110) : tokenBs[i]; // take gobv1 price for gobv2
+            pool = v3Factory.getPool({tokenA: tokenAs[i], tokenB: tokenB, fee: 100});
             (uint160 sqrtPriceX96,,,,,,) = IUniswapV3Pool(pool).slot0();
             // uint160 sqrtPriceX96 = 79245593361322215068791885849;
             newPool = factory.createPool({

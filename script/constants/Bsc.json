@@ -1,0 +1,40 @@
+{
+  "poolFactoryOwner": "0xa32da65DF7492D05814FacC7be9f5049A826b507",
+  "feeManager": "0xa32da65DF7492D05814FacC7be9f5049A826b507",
+  "notifyAdmin": "0xa32da65DF7492D05814FacC7be9f5049A826b507",
+  "FactoryRegistry": "0x04cbddCCfBcA3890a0Aef10C9Ad6e18268D6f7c7",
+  "Voter": "0x83385E207600Fd1401770E642e5dE12d6324AfF8",
+  "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // WBNB
+  "team": "0xa32da65DF7492D05814FacC7be9f5049A826b507",
+  "factoryV2": "0xd4603DE52a29ABa9B046B248ea7d0ac69801548c",
+  "tokenA": [
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf", // BCH
+    "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf" // BCH
+  ],
+  "tokenB": [
+    "0x62440594BE441fAec7F9fd4a3A8D1F4AD86E2987", // GOB v2
+    "0xa697e272a73744b343528c3bc4702f2565b2f422", // BONK
+    "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // WBNB
+    "0x2859e4544c4bb03966803b044a93563bd2d0dd4d", // SHIB
+    "0x25d887ce7a35172c62febfd67a1856f20faebb00", // PEPE
+    "0xfb5b838b6cfeedc2873ab27866079ac55363d37e", // FLOKI
+    "0xba2ae424d960c26247dd6c32edc70b295c744c43", // DOGE
+    "0x55d398326f99059fF775485246999027B3197955"  // USDT
+  ],
+  "fees": [
+    3000,
+    3000,
+    3000,
+    3000,
+    3000,
+    3000,
+    3000,
+    3000
+  ]
+}
